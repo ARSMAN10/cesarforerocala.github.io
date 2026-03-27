@@ -29,10 +29,11 @@
   /* ── HERO ── */
   .hero {
     background: var(--navy);
-    padding: 52px 60px 44px;
-    display: flex;
+    padding: 48px 60px 44px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
     align-items: center;
-    gap: 40px;
     position: relative;
     overflow: hidden;
   }
@@ -40,54 +41,87 @@
     content: '';
     position: absolute;
     right: -80px; top: -80px;
-    width: 380px; height: 380px;
+    width: 420px; height: 420px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(26,138,122,.35) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(26,138,122,.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  /* Left column */
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    border-right: 1px solid rgba(255,255,255,.1);
+    padding-right: 48px;
   }
   .hero-avatar {
-    width: 110px; height: 110px;
+    width: 100px; height: 100px;
     border-radius: 50%;
     border: 3px solid var(--teal-light);
-    object-fit: cover;
     flex-shrink: 0;
     background: var(--teal);
     display: flex; align-items: center; justify-content: center;
     font-family: 'Playfair Display', serif;
-    font-size: 38px;
+    font-size: 32px;
     color: white;
+    object-fit: cover;
   }
-  .hero-info h1 {
+  .hero-left h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     color: var(--white);
-    line-height: 1.15;
+    line-height: 1.2;
   }
-  .hero-info .role {
+  .hero-left .role {
     color: var(--teal-light);
-    font-size: .95rem;
+    font-size: .8rem;
     font-weight: 500;
     letter-spacing: .05em;
-    margin-top: 6px;
-  }
-  .hero-info .summary {
-    color: rgba(255,255,255,.7);
-    font-size: .88rem;
-    margin-top: 12px;
-    max-width: 620px;
-    line-height: 1.6;
+    line-height: 1.5;
   }
   .hero-meta {
     display: flex;
-    gap: 20px;
-    margin-top: 18px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 4px;
+    width: 100%;
   }
   .hero-meta span {
-    font-size: .8rem;
-    color: rgba(255,255,255,.55);
-    display: flex; align-items: center; gap: 6px;
+    font-size: .76rem;
+    color: rgba(255,255,255,.5);
+    display: flex; align-items: center; gap: 7px;
+    justify-content: center;
   }
-  .hero-meta span b { color: var(--gold); }
+  .hero-meta span b { color: var(--gold); font-weight: 500; }
+
+  /* Right column */
+  .hero-right {
+    position: relative;
+  }
+  .hero-right::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 7rem;
+    color: rgba(26,138,122,.2);
+    position: absolute;
+    top: -28px; left: -20px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero-summary {
+    font-size: .9rem;
+    color: rgba(255,255,255,.72);
+    line-height: 1.85;
+    text-align: justify;
+    hyphens: auto;
+    padding-left: 8px;
+  }
+  .hero-summary strong {
+    color: var(--teal-light);
+    font-weight: 600;
+  }
 
   /* ── SECTION WRAPPER ── */
   .page { max-width: 960px; margin: 0 auto; padding: 0 32px 60px; }
@@ -335,13 +369,12 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-avatar">CF</div>
-  <div class="hero-info">
+
+  <!-- Columna izquierda: identidad -->
+  <div class="hero-left">
+    <img class="hero-avatar" src="https://enlace-a-tu-foto.com/foto.jpg" alt="César Forero">
     <h1>César Iván Forero Cala</h1>
-    <div class="role">Senior Project Manager · PMP® · PRINCE2® · ITIL4®</div>
-    <div class="summary">
-      César Forero Cala es Senior Project Manager con formación como Ingeniero Electrónico de la Universidad Industrial de Santander, Especialista en Sistemas Gerenciales de Ingeniería y candidato a Magíster en Ingeniería Industrial en la Pontificia Universidad Javeriana, respaldado por certificaciones internacionales vigentes como PMP, PRINCE2 e ITIL4. Cuenta con más de 12 años de experiencia liderando proyectos estratégicos de TI, infraestructura y desarrollo de software en empresas como ThelAx, Inforcol y Recaudo Bogotá, logrando incrementos del 30% en el cumplimiento de objetivos operativos y reducciones del 15% en tiempos de entrega. Su perfil se distingue por habilidades blandas sólidas: comunicación asertiva, liderazgo de equipos multidisciplinarios, orientación a resultados y dominio inglés intermedio (B1), lo que le permite gestionar eficazmente stakeholders a nivel C-Level. En el plano tecnológico, domina herramientas de gestión como MS Project y JIRA, plataformas cloud con Google Cloud, infraestructura HPE, Cisco y Aruba, analítica avanzada con Power BI y Python, consolidando un perfil integral orientado a la creación de valor en proyectos complejos.
-    </div>
+    <div class="role">Senior Project Manager<br>PMP® · PRINCE2® · ITIL4®</div>
     <div class="hero-meta">
       <span>📍 <b>Bogotá, Colombia</b></span>
       <span>📧 <b>cesarforero1@gmail.com</b></span>
@@ -349,6 +382,14 @@
       <span>🔗 <b>linkedin.com/in/cforeroc</b></span>
     </div>
   </div>
+
+  <!-- Columna derecha: párrafo completo -->
+  <div class="hero-right">
+    <p class="hero-summary">
+      <strong>Senior Project Manager</strong> con formación como Ingeniero Electrónico de la Universidad Industrial de Santander, Especialista en Sistemas Gerenciales de Ingeniería y candidato a Magíster en Ingeniería Industrial en la Pontificia Universidad Javeriana, respaldado por certificaciones internacionales vigentes como PMP, PRINCE2 e ITIL4. Cuenta con <strong>más de 12 años de experiencia</strong> liderando proyectos estratégicos de TI, infraestructura y desarrollo de software en empresas como ThelAx, Inforcol y Recaudo Bogotá, logrando incrementos del <strong>30%</strong> en el cumplimiento de objetivos operativos y reducciones del <strong>15%</strong> en tiempos de entrega. Su perfil se distingue por habilidades blandas sólidas: comunicación asertiva, liderazgo de equipos multidisciplinarios, orientación a resultados y dominio inglés intermedio (B1), lo que le permite gestionar eficazmente stakeholders a nivel C-Level. En el plano tecnológico, domina herramientas de gestión como MS Project y JIRA, plataformas cloud con Google Cloud, infraestructura HPE, Cisco y Aruba, analítica avanzada con Power BI y Python, consolidando un perfil integral orientado a la <strong>creación de valor en proyectos complejos</strong>.
+    </p>
+  </div>
+
 </div>
 
 <div class="page">
@@ -534,16 +575,4 @@
         <div class="tech-item"><div class="tech-dot"></div><div class="tech-name">Mejoras a sistemas core de seguros</div></div>
         <div class="tech-item"><div class="tech-dot"></div><div class="tech-name">Plataformas de control de flota</div></div>
         <div class="tech-item"><div class="tech-dot"></div><div class="tech-name">Gestión de incidentes (ITIL4)</div></div>
-        <div class="tech-item"><div class="tech-dot"></div><div class="tech-name">Vigilancia tecnológica e innovación</div></div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /page -->
-
-<div class="footer">
-  Perfil Laboral · <b>César Iván Forero Cala</b> · PMP® · PRINCE2® · ITIL4® · Bogotá, Colombia · 2026
-</div>
-
-</body>
-</html>
+        <div class="tech-item"><div class="tech-dot"></div><div class="tech-name">Vigilancia tecn
